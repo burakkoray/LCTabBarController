@@ -114,6 +114,16 @@
 
 - (void)removeOriginControls {
     
+    [self hideOriginControls];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    [self hideOriginControls];
+}
+
+- (void)hideOriginControls {
     [self.tabBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * obj, NSUInteger idx, BOOL * stop) {
         
         if ([obj isKindOfClass:[UIControl class]]) {
