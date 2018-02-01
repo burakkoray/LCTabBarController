@@ -80,6 +80,17 @@
     return self;
 }
 
+
+- (instancetype)initWithItemImageRect:(CGRect)itemImageRect {
+    
+    if (self = [super init]) {
+        
+        self.itemImageSize = itemImageRect.size;
+        self.itemImageTop  = itemImageRect.origin.y;
+    }
+    return self;
+}
+
 - (void)updateViewContent {
     if (self.isSelected) {
         self.imageView.image      = self.tabBarItem.selectedImage;
@@ -94,7 +105,14 @@
     [super layoutSubviews];
     
     CGSize size           = self.bounds.size;
-    self.imageView.frame  = CGRectMake(0, 0, size.width, size.height * self.itemImageRatio);
+    CGRect imageRect;
+    if (CGSizeEqualToSize(self.itemImageSize,CGSizeZero )) {
+        imageRect = CGRectMake(0, 0, size.width, size.height * self.itemImageRatio);
+    }
+    else{
+        imageRect = [self imageRectForContentRect:CGRectMake(0, 0, size.width, size.height)];
+    }
+    self.imageView.frame  = imageRect;
     CGFloat titleY        = size.height * self.itemImageRatio + (self.itemImageRatio == 1.0f ? 100.0f : -5.0f);
     self.titleLabel.frame = CGRectMake(0, titleY, size.width, size.height - titleY);
     
@@ -180,9 +198,15 @@
         return CGRectMake(imageX, imageY, imageW, imageH);
     }
     else{
+<<<<<<< HEAD:Source/LCTabBarItem.m
         CGFloat imageY = (contentRect.size.width-self.itemImageSize.width)/2;
         
         return CGRectMake(self.itemImageTop, imageY, self.itemImageSize.width, self.itemImageSize.height);
+=======
+        CGFloat imageX = (contentRect.size.width-self.itemImageSize.width)/2;
+        
+        return CGRectMake(imageX, self.itemImageTop, self.itemImageSize.width, self.itemImageSize.height);
+>>>>>>> 97ae2e1a7ccd1642de0d92b90a64c51963d68bcd:LCTabBarController/LCTabBarItem.m
     }
     
 }

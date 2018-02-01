@@ -55,6 +55,36 @@
     return _selectedItemTitleColor;
 }
 
+- (void)setItemTitleColor:(UIColor *)aItemTitleColor {
+    itemTitleColor = aItemTitleColor;
+    
+    self.lcTabBar.itemTitleColor = aItemTitleColor;
+}
+
+- (void)setItemImageRatio:(CGFloat)itemImageRatio {
+    _itemImageRatio = itemImageRatio;
+    
+    self.lcTabBar.itemImageRatio = itemImageRatio;
+}
+
+- (void)setItemImageSize:(CGSize)itemImageSize
+{
+    _itemImageSize = itemImageSize;
+    self.lcTabBar.itemImageSize = itemImageSize;
+}
+
+- (void)setItemImageTop:(CGFloat)itemImageTop
+{
+    _itemImageTop = itemImageTop;
+    self.lcTabBar.itemImageTop = itemImageTop;
+}
+
+- (void)setSelectedItemTitleColor:(UIColor *)aSelectedItemTitleColor {
+    selectedItemTitleColor = aSelectedItemTitleColor;
+    
+    self.lcTabBar.selectedItemTitleColor = aSelectedItemTitleColor;
+}
+
 - (UIFont *)itemTitleFont {
     
     if (!_itemTitleFont) {
@@ -92,6 +122,13 @@
         tabBar.frame     = self.tabBar.bounds;
         tabBar.delegate  = self;
         
+        tabBar.badgeTitleFont         = self.badgeTitleFont;
+        tabBar.itemTitleFont          = self.itemTitleFont;
+        tabBar.itemTitleColor         = self.itemTitleColor;
+        tabBar.itemImageRatio         = self.itemImageRatio;
+        tabBar.itemImageSize          = self.itemImageSize;
+        tabBar.selectedItemTitleColor = self.selectedItemTitleColor;
+        tabBar.itemImageTop           = self.itemImageTop;
         self.lcTabBar = tabBar;
     })];
 //    UIKeyboardWillShowNotification
