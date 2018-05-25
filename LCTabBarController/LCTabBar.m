@@ -81,12 +81,15 @@
     
     if ([self.delegate respondsToSelector:@selector(tabBar:didSelectedItemFrom:to:)]) {
         
-        [self.delegate tabBar:self didSelectedItemFrom:self.selectedItem.tabBarItem.tag to:tabBarItem.tag];
+        [self.delegate tabBar:self didSelectedItemFrom:self.selectedItem.tag to:tabBarItem.tag];
     }
     
-    self.selectedItem.selected = NO;
-    self.selectedItem = tabBarItem;
-    self.selectedItem.selected = YES;
+    if (tabBarItem.tag != 2) {
+        self.selectedItem.selected = NO;
+        self.selectedItem = tabBarItem;
+        self.selectedItem.selected = YES;
+    }
+    
 }
 
 - (void)layoutSubviews {
